@@ -2,36 +2,28 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="hibernateResidencias">
+ <session-factory>
   <!-- JDBC Database connection settings -->
   <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-  <property name="connection.url">jdbc:mysql://148.113.202.164:3306/sagalo?useSSL=false</property>
-  <property name="connection.username">sagalo</property>
-  <property name="connection.password">sagalo</property>
-  <!-- JDBC connection pool settings ... using built-in test pool -->
-  <property name="connection.pool_size">1</property>
+  <property name="hibernate.connection.url">jdbc:mysql://148.113.202.164:3306/sefeji</property>
+  <property name="hibernate.connection.username">sefeji</property>
+  <property name="hibernate.connection.password">sefeji</property>
+
+  <!-- Connection pool settings -->
+  <property name="hibernate.connection.pool_size">5</property>
+
   <!-- Echo the SQL to stdout -->
-  <property name="show_sql">true</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.format_sql">true</property>
+
   <!-- Set the current session context -->
-  <property name="current_session_context_class">thread</property>
-  <!--Valores Posibles 
-		validate: validate that the schema matches, make no changes to the schema of the database, you probably want this for production.
-		update: update the schema to reflect the entities being persisted
-		create: creates the schema necessary for your entities, destroying any previous data.
-		create-drop: create the schema as in create above, but also drop the schema at the end of the session. This is great in early development or for testing.-->
-  <property name="hbm2ddl.auto">validate</property>
-  <!-- dbcp connection pool configuration -->
-  <property name="hibernate.dbcp.initialSize">5</property>
-  <property name="hibernate.dbcp.maxTotal">20</property>
-  <property name="hibernate.dbcp.maxIdle">10</property>
-  <property name="hibernate.dbcp.minIdle">5</property>
-  <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-  <!-- Mapea las siguientes clases anotadas si trabajásemos con mapeo XML en lugar de class
-		pondríamos resource -->
-  <mapping class="main.estudiantes"/>
-  <mapping class="main.universidades"/>
-  <mapping class="main.residencias"/>
-  <mapping class="main.estancias"/>
-  <mapping class="main.residenciasobservaciones"/>
+  <property name="hibernate.current_session_context_class">thread</property>
+
+  <!-- Schema generation -->
+  <property name="hbm2ddl.auto">update</property>
+
+  <!-- Mapping classes -->
+  <mapping class="main.Vuelo"/>
+  <mapping class="main.Pasajero"/>
  </session-factory>
 </hibernate-configuration>
